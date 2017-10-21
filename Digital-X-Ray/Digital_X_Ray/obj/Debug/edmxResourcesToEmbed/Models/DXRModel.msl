@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DXRCasosModelStoreContainer" CdmEntityContainer="DXREntities">
+    <FunctionImportMapping FunctionImportName="sp_cargarCaso" FunctionName="DXRCasosModel.Store.sp_cargarCaso">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarCaso_Result">
+          <ScalarProperty Name="intIDCaso" ColumnName="intIDCaso" />
+          <ScalarProperty Name="chrNroCaso" ColumnName="chrNroCaso" />
+          <ScalarProperty Name="chrCodCli" ColumnName="chrCodCli" />
+          <ScalarProperty Name="chrCodGen" ColumnName="chrCodGen" />
+          <ScalarProperty Name="vchrdeslar" ColumnName="vchrdeslar" />
+          <ScalarProperty Name="chrCliAdic" ColumnName="chrCliAdic" />
+          <ScalarProperty Name="chrProblema" ColumnName="chrProblema" />
+          <ScalarProperty Name="chrTrabajos" ColumnName="chrTrabajos" />
+          <ScalarProperty Name="chrObservaciones" ColumnName="chrObservaciones" />
+          <ScalarProperty Name="chrEstCaso" ColumnName="chrEstCaso" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_cargarCasos" FunctionName="DXRCasosModel.Store.sp_cargarCasos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarCasos_Result">
+          <ScalarProperty Name="chrNroCaso" ColumnName="chrNroCaso" />
+          <ScalarProperty Name="dtmfecProg" ColumnName="dtmfecProg" />
+          <ScalarProperty Name="chrCliAdic" ColumnName="chrCliAdic" />
+          <ScalarProperty Name="bytHoraIni" ColumnName="bytHoraIni" />
+          <ScalarProperty Name="chrEstCaso" ColumnName="chrEstCaso" />
+          <ScalarProperty Name="chrDesEsp" ColumnName="chrDesEsp" />
+          <ScalarProperty Name="difrInicio" ColumnName="difrInicio" />
+          <ScalarProperty Name="difrFin" ColumnName="difrFin" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_cargarImagenesDeCaso" FunctionName="DXRCasosModel.Store.sp_cargarImagenesDeCaso">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarImagenesDeCaso_Result">
+          <ScalarProperty Name="intIDCaso" ColumnName="intIDCaso" />
+          <ScalarProperty Name="imgFoto" ColumnName="imgFoto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_editarCaso" FunctionName="DXRCasosModel.Store.sp_editarCaso" />
+    <FunctionImportMapping FunctionImportName="sp_listarProductos" FunctionName="DXRCasosModel.Store.sp_listarProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DXRCasosModel.sp_listarProductos_Result">
+          <ScalarProperty Name="CHRCODGEN" ColumnName="CHRCODGEN" />
+          <ScalarProperty Name="VCHRDESLAR" ColumnName="VCHRDESLAR" />
+          <ScalarProperty Name="NUMSTKDIS" ColumnName="NUMSTKDIS" />
+          <ScalarProperty Name="CHRDESMDA" ColumnName="CHRDESMDA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_login" FunctionName="DXRCasosModel.Store.sp_login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DXRCasosModel.sp_login_Result">
+          <ScalarProperty Name="chrNOMVEN" ColumnName="chrNOMVEN" />
+          <ScalarProperty Name="chrLOGUSR" ColumnName="chrLOGUSR" />
+          <ScalarProperty Name="chrCODVEN" ColumnName="chrCODVEN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_subirImagenes" FunctionName="DXRCasosModel.Store.sp_subirImagenes" />
+  </EntityContainerMapping>
+</Mapping>

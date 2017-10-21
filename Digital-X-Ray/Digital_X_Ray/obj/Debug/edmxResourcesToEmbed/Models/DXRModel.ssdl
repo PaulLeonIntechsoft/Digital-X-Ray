@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DXRCasosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="sp_cargarCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="numeroCaso" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_cargarCasos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigo" Type="char" Mode="In" />
+    <Parameter Name="fechaInicio" Type="varchar" Mode="In" />
+    <Parameter Name="fechaFin" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_cargarImagenesDeCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCaso" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_editarCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCaso" Type="int" Mode="In" />
+    <Parameter Name="problema" Type="varchar" Mode="In" />
+    <Parameter Name="trabajo" Type="varchar" Mode="In" />
+    <Parameter Name="observaciones" Type="varchar" Mode="In" />
+    <Parameter Name="codigoEstado" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_listarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="char" Mode="In" />
+    <Parameter Name="contrasena" Type="char" Mode="In" />
+  </Function>
+  <Function Name="sp_subirImagenes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigoCaso" Type="int" Mode="In" />
+    <Parameter Name="imagen" Type="varchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="DXRCasosModelStoreContainer" />
+</Schema>

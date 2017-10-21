@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DXRCasosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DXREntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_cargarCaso" ReturnType="Collection(DXRCasosModel.sp_cargarCaso_Result)">
+      <Parameter Name="numeroCaso" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_cargarCasos" ReturnType="Collection(DXRCasosModel.sp_cargarCasos_Result)">
+      <Parameter Name="codigo" Mode="In" Type="String" />
+      <Parameter Name="fechaInicio" Mode="In" Type="String" />
+      <Parameter Name="fechaFin" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_cargarImagenesDeCaso" ReturnType="Collection(DXRCasosModel.sp_cargarImagenesDeCaso_Result)">
+      <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editarCaso">
+      <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+      <Parameter Name="problema" Mode="In" Type="String" />
+      <Parameter Name="trabajo" Mode="In" Type="String" />
+      <Parameter Name="observaciones" Mode="In" Type="String" />
+      <Parameter Name="codigoEstado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_listarProductos" ReturnType="Collection(DXRCasosModel.sp_listarProductos_Result)" />
+    <FunctionImport Name="sp_login" ReturnType="Collection(DXRCasosModel.sp_login_Result)">
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contrasena" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_subirImagenes">
+      <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+      <Parameter Name="imagen" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_cargarCaso_Result">
+    <Property Type="Int32" Name="intIDCaso" Nullable="false" />
+    <Property Type="String" Name="chrNroCaso" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="chrCodCli" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="chrCodGen" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="vchrdeslar" Nullable="false" MaxLength="400" />
+    <Property Type="String" Name="chrCliAdic" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="chrProblema" Nullable="true" MaxLength="700" />
+    <Property Type="String" Name="chrTrabajos" Nullable="true" MaxLength="700" />
+    <Property Type="String" Name="chrObservaciones" Nullable="true" MaxLength="700" />
+    <Property Type="String" Name="chrEstCaso" Nullable="true" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="sp_cargarCasos_Result">
+    <Property Type="String" Name="chrNroCaso" Nullable="false" MaxLength="6" />
+    <Property Type="DateTime" Name="dtmfecProg" Nullable="true" Precision="23" />
+    <Property Type="String" Name="chrCliAdic" Nullable="true" MaxLength="70" />
+    <Property Type="Int16" Name="bytHoraIni" Nullable="true" />
+    <Property Type="String" Name="chrEstCaso" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="chrDesEsp" Nullable="false" MaxLength="15" />
+    <Property Type="Int32" Name="difrInicio" Nullable="true" />
+    <Property Type="Int32" Name="difrFin" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_cargarImagenesDeCaso_Result">
+    <Property Type="Int32" Name="intIDCaso" Nullable="true" />
+    <Property Type="String" Name="imgFoto" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_listarProductos_Result">
+    <Property Type="String" Name="CHRCODGEN" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="VCHRDESLAR" Nullable="false" MaxLength="400" />
+    <Property Type="Decimal" Name="NUMSTKDIS" Nullable="false" Precision="20" Scale="4" />
+    <Property Type="String" Name="CHRDESMDA" Nullable="true" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="sp_login_Result">
+    <Property Type="String" Name="chrNOMVEN" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="chrLOGUSR" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="chrCODVEN" Nullable="false" MaxLength="5" />
+  </ComplexType>
+</Schema>

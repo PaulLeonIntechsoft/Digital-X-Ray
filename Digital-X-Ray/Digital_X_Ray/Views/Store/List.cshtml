@@ -1,0 +1,68 @@
+﻿@model List<Digital_X_Ray.Models.sp_listarProductos_Result>
+
+@{
+    ViewBag.Title = "LISTA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+    @Styles.Render("~/DataTables/Styles")
+    <link href="~/Content/individual/listStyle.css" rel="stylesheet"/>
+    
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Stock del Almacen</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table id="example" class="table table-hover display nowrap" cellspacing="0" width="100%">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="text-center">Codigo</th>
+                        <th class="text-center">Descripcion</th>
+                        <th class="text-center">Stock</th>
+                        <th class="text-center">Und.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.CHRCODGEN)
+                            </td>
+                            <td class="text-left">
+                                @Html.DisplayFor(modelItem => item.VCHRDESLAR)
+                            </td>
+                            <td class="text-center">
+                                @Convert.ToString(item.NUMSTKDIS).Substring(0,Convert.ToString(item.NUMSTKDIS).Length - 3)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem =>  item.CHRDESMDA)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <a class="btn btn-danger" href="@Url.Action("Index","Home")">Volver</a>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/DataTables/Scripts")
+    <script src="~/Scripts/individual/listQuery.js"></script>
+    
+}

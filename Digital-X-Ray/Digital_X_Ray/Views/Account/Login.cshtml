@@ -1,0 +1,54 @@
+﻿@using Digital_X_Ray.Models
+@model sp_login_Result
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Content/individual/loginStyle.css" rel="stylesheet"/>
+    
+}
+
+<div class="container">
+    <div class="row centrado">
+        <div id="cont1" class="col-0 col-sm-1 col-md-2 col-lg-7">
+        </div>
+        <div id="cont2" class="col-12 col-sm-10 col-md-8 col-lg-5">
+            <div class="login-form-container">
+                @using (Html.BeginForm("Login", "Account",
+                                            new { ReturnUrl = ViewBag.ReturnUrl },
+                                            FormMethod.Post,
+                                            new { @class = "", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.chrLOGUSR, new { @class = "form-control-label sr-only" })
+                        @Html.TextBoxFor(m => m.chrLOGUSR, new { @class = "form-control", placeholder = "Usuario" })
+                        @Html.ValidationMessageFor(m => m.chrLOGUSR, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.chrCODVEN, new { @class = "form-control-label sr-only" })
+                        @Html.PasswordFor(m => m.chrCODVEN, new { @class = "form-control", placeholder = "Contraseña" })
+                        @Html.ValidationMessageFor(m => m.chrCODVEN, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary btn-block" type="submit" value="Ingresar">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryVal")
+    <script src="~/Scripts/individual/loginQuery.js"></script>
+        
+}

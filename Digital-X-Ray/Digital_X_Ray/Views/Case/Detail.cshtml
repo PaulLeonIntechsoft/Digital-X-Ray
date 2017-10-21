@@ -1,0 +1,209 @@
+﻿
+@model Digital_X_Ray.Models.Validations.CaseCE
+
+@{
+    if (Model.detallesCaso.chrEstCaso.Equals("34") || Model.detallesCaso.chrEstCaso.Equals("33") || Model.detallesCaso.chrEstCaso.Equals("32"))
+    {
+        ViewBag.Title = "CONSULTAR CASO";
+    }
+    else
+    {
+        ViewBag.Title = "EDITAR CASO";
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    
+    <link href="~/Content/individual/detailStyle.css" rel="stylesheet"/>
+    
+}
+
+<div id="containerPadre" class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">@ViewBag.Title</h2>
+        </div>
+    </div>
+    <div class="row centrado">
+        <div id="emptyPlace" class="col-0 col-sm-1 col-md-4 col-lg-5">
+        </div>
+        <div id="formContainer" class="col-12 col-sm-10 col-md-8 col-lg-7">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-sm-3 col-md-12 col-lg-3">
+                            <label for="">Caso :</label>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                            <input class="form-control form-control-sm" type="text" name="" id="nroCaso" value="@Model.detallesCaso.chrNroCaso" readonly>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-9 col-lg-6">
+                            <input class="form-control form-control-sm" type="text" name="datosCliente" id="@Model.detallesCaso.chrCodCli" value="@Model.detallesCaso.chrCliAdic" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-sm-3 col-md-12 col-lg-3">
+                            <label for="">Equipo :</label>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+                            <input class="form-control form-control-sm" type="text" name="" id="" value="@Model.detallesCaso.chrCodGen" readonly>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-9 col-lg-6">
+                            <input class="form-control form-control-sm" type="text" name="" id="" value="@Model.detallesCaso.vchrdeslar" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <label for="">Descripcion del Problema :</label>
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <textarea class="form-control" id="txtProblema" name="txtProblema" cols="50" rows="2">@Model.detallesCaso.chrProblema</textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <label for="">Trabajos Realizados :</label>
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <textarea class="form-control" id="txtTrabajosRealizados" name="txtTrabajosRealizados" cols="50" rows="2" maxlength="200">@Model.detallesCaso.chrTrabajos</textarea>
+                            <small class="text-muted">
+                                Máximo 200 carácteres.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <label for="">Observaciones :</label>
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" cols="40" rows="2" maxlength="200">@Model.detallesCaso.chrObservaciones</textarea>
+                            <small class="text-muted">
+                                Máximo 200 carácteres.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <label for="">Imagenes : </label>
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    @if (Model.imagenesCaso.Count > 0)
+	                                {
+                                        foreach (var item in Model.imagenesCaso)
+                                        {
+                                            <div id="imagenesBase" class="col-6 col-sm-4">
+                                            @{
+                                                var base64 = item.imgFoto;
+                                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                                <img class="style_prevu_kit" src="@imgSrc">
+                                            </div>
+                                        }
+	                                }
+                                    <div class="col-6 col-sm-4">
+                                        <div style="width: 100%">
+                                            <label for="file-input">
+                                                <img src="~/Images/plus-mas-imagen.png" width="50%" style="margin-left: 25%; margin-top: 25%">
+                                            </label>
+                                            <input type="file" name="file-input" id="file-input" style="display: none">
+                                            <p id="baseImagenes" style="display: none"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <label for="">Estado Final :</label>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <select class="custom-select" name="" id="cboEstado">
+                                @if (Model.detallesCaso.chrEstCaso.Equals("30"))
+                                {
+                                    <option value=""> --- Seleccione Estado --- </option>
+                                    <option value="30" selected="selected">Asignado</option>
+                                    <option value="31">Atendido</option>
+                                    <option value="32">Cerrado</option>
+                                    <option value="33">Anulado</option>
+                                    <option value="34">Rechazado</option>
+                                }
+                                else if (Model.detallesCaso.chrEstCaso.Equals("31"))
+                                {
+                                    <option value=""> --- Seleccione Estado --- </option>
+                                    <option value="30">Asignado</option>
+                                    <option value="31" selected="selected">Atendido</option>
+                                    <option value="32">Cerrado</option>
+                                    <option value="33">Anulado</option>
+                                    <option value="34">Rechazado</option>
+                                }
+                                else if (Model.detallesCaso.chrEstCaso.Equals("32"))
+                                {
+                                    <option value=""> --- Seleccione Estado --- </option>
+                                    <option value="30">Asignado</option>
+                                    <option value="31">Atendido</option>
+                                    <option value="32" selected="selected">Cerrado</option>
+                                    <option value="33">Anulado</option>
+                                    <option value="34">Rechazado</option>
+                                }
+                                else if (Model.detallesCaso.chrEstCaso.Equals("33"))
+                                {
+                                    <option value=""> --- Seleccione Estado --- </option>
+                                    <option value="30">Asignado</option>
+                                    <option value="31">Atendido</option>
+                                    <option value="32">Cerrado</option>
+                                    <option value="33" selected="selected">Anulado</option>
+                                    <option value="34">Rechazado</option>
+                                }
+                                else if (Model.detallesCaso.chrEstCaso.Equals("34"))
+                                {
+                                    <option value=""> --- Seleccione Estado --- </option>
+                                    <option value="30">Asignado</option>
+                                    <option value="31">Atendido</option>
+                                    <option value="32">Cerrado</option>
+                                    <option value="33">Anulado</option>
+                                    <option value="34" selected="selected">Rechazado</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-3">
+                            @if (Model.detallesCaso.chrEstCaso.Equals("34") || Model.detallesCaso.chrEstCaso.Equals("33") || Model.detallesCaso.chrEstCaso.Equals("32"))
+                            {
+                                <button id="btnGrabar" class="btn btn-primary btn-block" disabled>Grabar</button>
+                            }
+                            else
+                            {
+                                <button id="btnGrabar" class="btn btn-primary btn-block" >Grabar</button>
+                            }
+                            <a class="btn btn-danger btn-block" href="@Url.Action("Index","Home")">Cancelar</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                Cambios guardados satisfactoriamente.
+            </div>
+            <div class="modal-footer">
+                <button id="cambiosAceptados" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+    <script src="~/Scripts/individual/detailQuery.js"></script>
+    <script src="~/Scripts/individual/limitarCaracteres.js"></script>
+        
+}

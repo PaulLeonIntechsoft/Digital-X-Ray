@@ -1,0 +1,45 @@
+﻿body{
+    background-color: #c8d5b9;
+}
+
+a{
+    cursor: pointer;
+}
+
+th{
+    max-width: 30px;
+    font-size: 10px;
+    text-align: center;
+}
+
+th > a{
+    max-width: 270px;
+    font-size: 10px;
+    color: red;
+}
+
+.event-selected{
+    font-size: 10px;
+    color: red;
+}
+
+#miFecha{
+    cursor: pointer;
+}
+
+table{
+    min-width: 900px;
+    background-color: rgba(255, 255, 255, 0.90);
+}
+
+thead{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+tbody{
+    background-color: rgba(255, 255, 255, 0.94);
+}
+
+.responsive-vertical{
+    overflow-x: scroll;
+}

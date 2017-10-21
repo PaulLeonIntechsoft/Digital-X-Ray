@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DXRCasosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="sp_cargarCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numeroCaso" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_cargarCasos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigo" Type="char" Mode="In" />
+          <Parameter Name="fechaInicio" Type="varchar" Mode="In" />
+          <Parameter Name="fechaFin" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_cargarImagenesDeCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCaso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_editarCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCaso" Type="int" Mode="In" />
+          <Parameter Name="problema" Type="varchar" Mode="In" />
+          <Parameter Name="trabajo" Type="varchar" Mode="In" />
+          <Parameter Name="observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="codigoEstado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_listarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="char" Mode="In" />
+          <Parameter Name="contrasena" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_subirImagenes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCaso" Type="int" Mode="In" />
+          <Parameter Name="imagen" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="DXRCasosModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DXRCasosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DXREntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="sp_cargarCaso" ReturnType="Collection(DXRCasosModel.sp_cargarCaso_Result)">
+            <Parameter Name="numeroCaso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cargarCasos" ReturnType="Collection(DXRCasosModel.sp_cargarCasos_Result)">
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio" Mode="In" Type="String" />
+            <Parameter Name="fechaFin" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cargarImagenesDeCaso" ReturnType="Collection(DXRCasosModel.sp_cargarImagenesDeCaso_Result)">
+            <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editarCaso">
+            <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+            <Parameter Name="problema" Mode="In" Type="String" />
+            <Parameter Name="trabajo" Mode="In" Type="String" />
+            <Parameter Name="observaciones" Mode="In" Type="String" />
+            <Parameter Name="codigoEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_listarProductos" ReturnType="Collection(DXRCasosModel.sp_listarProductos_Result)" />
+          <FunctionImport Name="sp_login" ReturnType="Collection(DXRCasosModel.sp_login_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_subirImagenes">
+            <Parameter Name="codigoCaso" Mode="In" Type="Int32" />
+            <Parameter Name="imagen" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_cargarCaso_Result">
+          <Property Type="Int32" Name="intIDCaso" Nullable="false" />
+          <Property Type="String" Name="chrNroCaso" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="chrCodCli" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="chrCodGen" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="vchrdeslar" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="chrCliAdic" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="chrProblema" Nullable="true" MaxLength="700" />
+          <Property Type="String" Name="chrTrabajos" Nullable="true" MaxLength="700" />
+          <Property Type="String" Name="chrObservaciones" Nullable="true" MaxLength="700" />
+          <Property Type="String" Name="chrEstCaso" Nullable="true" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="sp_cargarCasos_Result">
+          <Property Type="String" Name="chrNroCaso" Nullable="false" MaxLength="6" />
+          <Property Type="DateTime" Name="dtmfecProg" Nullable="true" Precision="23" />
+          <Property Type="String" Name="chrCliAdic" Nullable="true" MaxLength="70" />
+          <Property Type="Int16" Name="bytHoraIni" Nullable="true" />
+          <Property Type="String" Name="chrEstCaso" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="chrDesEsp" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="difrInicio" Nullable="true" />
+          <Property Type="Int32" Name="difrFin" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_cargarImagenesDeCaso_Result">
+          <Property Type="Int32" Name="intIDCaso" Nullable="true" />
+          <Property Type="String" Name="imgFoto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_listarProductos_Result">
+          <Property Type="String" Name="CHRCODGEN" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="VCHRDESLAR" Nullable="false" MaxLength="400" />
+          <Property Type="Decimal" Name="NUMSTKDIS" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="String" Name="CHRDESMDA" Nullable="true" MaxLength="6" />
+        </ComplexType>
+        <ComplexType Name="sp_login_Result">
+          <Property Type="String" Name="chrNOMVEN" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="chrLOGUSR" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="chrCODVEN" Nullable="false" MaxLength="5" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DXRCasosModelStoreContainer" CdmEntityContainer="DXREntities" >
+          <FunctionImportMapping FunctionImportName="sp_cargarCaso" FunctionName="DXRCasosModel.Store.sp_cargarCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarCaso_Result">
+                <ScalarProperty Name="intIDCaso" ColumnName="intIDCaso" />
+                <ScalarProperty Name="chrNroCaso" ColumnName="chrNroCaso" />
+                <ScalarProperty Name="chrCodCli" ColumnName="chrCodCli" />
+                <ScalarProperty Name="chrCodGen" ColumnName="chrCodGen" />
+                <ScalarProperty Name="vchrdeslar" ColumnName="vchrdeslar" />
+                <ScalarProperty Name="chrCliAdic" ColumnName="chrCliAdic" />
+                <ScalarProperty Name="chrProblema" ColumnName="chrProblema" />
+                <ScalarProperty Name="chrTrabajos" ColumnName="chrTrabajos" />
+                <ScalarProperty Name="chrObservaciones" ColumnName="chrObservaciones" />
+                <ScalarProperty Name="chrEstCaso" ColumnName="chrEstCaso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_cargarCasos" FunctionName="DXRCasosModel.Store.sp_cargarCasos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarCasos_Result">
+                <ScalarProperty Name="chrNroCaso" ColumnName="chrNroCaso" />
+                <ScalarProperty Name="dtmfecProg" ColumnName="dtmfecProg" />
+                <ScalarProperty Name="chrCliAdic" ColumnName="chrCliAdic" />
+                <ScalarProperty Name="bytHoraIni" ColumnName="bytHoraIni" />
+                <ScalarProperty Name="chrEstCaso" ColumnName="chrEstCaso" />
+                <ScalarProperty Name="chrDesEsp" ColumnName="chrDesEsp" />
+                <ScalarProperty Name="difrInicio" ColumnName="difrInicio" />
+                <ScalarProperty Name="difrFin" ColumnName="difrFin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_cargarImagenesDeCaso" FunctionName="DXRCasosModel.Store.sp_cargarImagenesDeCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DXRCasosModel.sp_cargarImagenesDeCaso_Result">
+                <ScalarProperty Name="intIDCaso" ColumnName="intIDCaso" />
+                <ScalarProperty Name="imgFoto" ColumnName="imgFoto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_editarCaso" FunctionName="DXRCasosModel.Store.sp_editarCaso" />
+          <FunctionImportMapping FunctionImportName="sp_listarProductos" FunctionName="DXRCasosModel.Store.sp_listarProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DXRCasosModel.sp_listarProductos_Result">
+                <ScalarProperty Name="CHRCODGEN" ColumnName="CHRCODGEN" />
+                <ScalarProperty Name="VCHRDESLAR" ColumnName="VCHRDESLAR" />
+                <ScalarProperty Name="NUMSTKDIS" ColumnName="NUMSTKDIS" />
+                <ScalarProperty Name="CHRDESMDA" ColumnName="CHRDESMDA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_login" FunctionName="DXRCasosModel.Store.sp_login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DXRCasosModel.sp_login_Result">
+                <ScalarProperty Name="chrNOMVEN" ColumnName="chrNOMVEN" />
+                <ScalarProperty Name="chrLOGUSR" ColumnName="chrLOGUSR" />
+                <ScalarProperty Name="chrCODVEN" ColumnName="chrCODVEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_subirImagenes" FunctionName="DXRCasosModel.Store.sp_subirImagenes" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

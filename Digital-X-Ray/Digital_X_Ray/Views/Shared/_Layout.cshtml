@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Bootstrap/Styles")
+    @RenderSection("styles", required: false)
+
+</head>
+<body>
+
+
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Bootstrap/Scripts")
+    @Scripts.Render("~/Project/Methods")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
